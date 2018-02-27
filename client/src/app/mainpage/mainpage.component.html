@@ -3,12 +3,21 @@
 				<div class="row">
 				<div class = "col-lg-3">
 						<ul class="list-group list-group-flush">
-  								<li class="list-group-item list-group-item-action" *ngFor="let tech of technicians">
-  										{{tech.fullname}}
+  								<li class="list-group-item list-group-item-action" *ngFor="let tech of technicians" (click)="displayDetails(tech)">
+  										{{tech.name}}
+  										{{tech.address}}
   								</li>
 						</ul>
 				</div>
+				<div class = "col-lg-9">
+					<agm-map [latitude]="lat" [longitude]="lng">
+	 		 		<agm-marker [latitude]="tech.lat" [longitude]="tech.lng" *ngFor="let tech of technicians; let i=index>
+	 		 			
+					</agm-map>
+					<div *ngIf = "isVisible">
+					<app-techdetails [tech] = "selectedTech"></app-techdetails>
+					</div>
+				</div>
 				</div>
 		</div>
-
 </div>
